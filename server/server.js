@@ -9,13 +9,13 @@ const {Worker}= require('worker_threads')
 
 const cors = require("cors");
 
-// const web3 = new Web3(
-//   new Web3.providers.HttpProvider('http://99.80.123.81:8545'),
-//   )
-
 const web3 = new Web3(
-  new Web3.providers.HttpProvider('https://eth-goerli.g.alchemy.com/v2/FciNO-qurqA37I5dal9Vi9b5HiDAPhx8'),
-)
+  new Web3.providers.HttpProvider('http://99.80.123.81:8545'),
+  )
+
+// const web3 = new Web3(
+//   new Web3.providers.HttpProvider('https://eth-goerli.g.alchemy.com/v2/FciNO-qurqA37I5dal9Vi9b5HiDAPhx8'),
+// )
 
 app.use(express.json())
 app.use(cors());
