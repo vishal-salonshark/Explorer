@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-lone-blocks */
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table'
 import { useState, useEffect } from 'react'
@@ -27,7 +29,7 @@ function UserTxHistory() {
     <div className="container shadow-lg p-3 mb-5 bg-body-tertiary rounded">
     <Form  
     onInput={(e) => {
-      localStorage.setItem('_ux', e.target.value)
+      localStorage.setItem('_ux', (e.target.value).toLowerCase())
       // console.log(user)
     }}
     // onSubmit={ (e) => {
