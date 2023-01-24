@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+// import ConnectWallet from './ConnectWallet'
 
 import Search from './Search'
 // import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -25,6 +26,7 @@ function NavBar() {
           >
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/user/">Users</Nav.Link>
+            <Nav.Link href="/userBal/">UserBalance</Nav.Link>
           </Nav>
           <Form className="d-flex">
             {/* <Form.Control
@@ -37,6 +39,7 @@ function NavBar() {
                 
               }}
             /> */}
+            {/* <ConnectWallet/> */}
             <Search show={modalShow} onHide={() => setModalShow(false)} />
             <Button variant="primary" onClick={() => setModalShow(true) }>
               Search

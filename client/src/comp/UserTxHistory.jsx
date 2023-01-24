@@ -21,9 +21,7 @@ function UserTxHistory() {
       })
     }, [])}
 
-    const userTx =() => {
-
-    }
+    
     return (
       <div className="App" style={{margin: "3rem"}}>
     <div className="container shadow-lg p-3 mb-5 bg-body-tertiary rounded">
