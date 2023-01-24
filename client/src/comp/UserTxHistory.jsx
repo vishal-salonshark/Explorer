@@ -5,6 +5,7 @@ import Table from 'react-bootstrap/Table'
 import { useState, useEffect } from 'react'
 import Axios from 'axios'
 import { Link } from "react-router-dom";
+import UserBalance from "./UserBalance";
 
 function UserTxHistory() {
 
@@ -41,6 +42,7 @@ function UserTxHistory() {
             />
 </Form>
   <h3> { String(localStorage.getItem('_ux')) } </h3>
+  <UserBalance acc={localStorage.getItem('_ux')}/>
 <Table className="m-top-5 " responsive="lg" hover>
         <thead>
           <tr>

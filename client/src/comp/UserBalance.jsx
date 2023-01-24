@@ -3,20 +3,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ethers } from 'ethers'
 import React, { useState, useEffect } from 'react'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup'
+// import Form from 'react-bootstrap/Form'
+// import Button from 'react-bootstrap/Button'
 
-export function UserBalance() {
+export function UserBalance(acc) {
   const [errorMessage, setErrorMessage] = useState(null)
   const [defaultAccount, setDefaultAccount] = useState(null)
   const [userBalance, setUserBalance] = useState(null)
   const [isConnected, setIsConnected] = useState(false)
   const [tokenBalances, setTokenBalances] = useState({})
 
-  const provider = new ethers.providers.JsonRpcProvider(
-    'http://99.80.123.81:8545',
-  )
-
+  const provider = new ethers.providers.JsonRpcProvider('http://99.80.123.81:8545')
   const tokenAddresses = {
     mctk: '0xd33709aD9462FEaF29f32C1db0e1Cf529305282f',
     alpha: '0xf2567A10b2A0EC62990d36516865CFC2b401B07F',
@@ -57,25 +56,25 @@ export function UserBalance() {
       console.log(tokenData)
       setTokenBalances(tokenData)
     }
-    if (defaultAccount) {
-        fetchData()
+    const onSub = async (acc) => {
+      try {
+        accountChangedHandler( await acc.acc)
+      //   setDefaultAccount(acc.acc)
+      // getAccountBalance(acc.acc)
+      } catch (error) {
+        console.log(error)
+      }
     }
-    setIsConnected(true)
-  }, [defaultAccount])
+    onSub(acc)
+
+    if (defaultAccount) {
+      fetchData()
+    }
+  }, [defaultAccount, acc])
 
   useEffect(() => {
     window.ethereum.on('accountsChanged', accountChangedHandler)
   }, [])
-
-  const onSub = async (e) => {
-    e.preventDefault()
-    try {
-      const newAccount = localStorage.getItem('_acc')
-      accountChangedHandler(newAccount)
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   const accountChangedHandler = async (newAccount) => {
     if (newAccount) {
@@ -94,45 +93,20 @@ export function UserBalance() {
         setErrorMessage(error.message)
       })
   }
-
   return (
-    <div className="container d-flex justify-content-md-center shadow-lg p-3 my-3 bg-body-tertiary rounded">
-      <div className="App" style={{ margin: '3rem', width: '50rem' }}>
-        <Form
-          onInputCapture={(e) => {
-            localStorage.setItem('_acc', e.target.value.toLowerCase())
-            console.log('this is ONInput Event')
-          }}
-        >
-          <Form.Control
-            size="lg"
-            aria-label="Text input with dropdown button"
-            className="border border-0 shadow-lg p-4 mb-5 bg-body-tertiary rounded-end"
-            placeholder="Search Here"
-          />
-          <Button variant="primary" type="submit" onClick={onSub}>
-            Submit
-          </Button>
-        </Form>
-
-        <div className="border border-0 shadow-lg p-4 my-3 bg-body-tertiary rounded-end">
-          <strong>ETH :</strong>
-          {userBalance}
-        </div>
-        {isConnected ? (
-          Object.entries(tokenBalances).map(([token, { symbol, balance }]) => (
-            <div className="border border-0 shadow-lg p-4 my-3 bg-body-tertiary rounded-end" key={token}>
-              <strong>{symbol} :</strong> {balance}
-            </div>
-          ))
-        ):
-        (
-            <div>
-                
-            </div>
-        )}
-      </div>
+    <div>
+      <Card style={{ width: '18rem' }}>
+        <Card.Header>Balance</Card.Header>
+        <ListGroup variant="flush">
+          <ListGroup.Item><small><strong>ETH :</strong> {userBalance}</small></ListGroup.Item>
+            {Object.entries(tokenBalances).map(([token, { symbol, balance }]) => (
+              <ListGroup.Item key={token}><small><strong>{symbol} :</strong>{balance}</small></ListGroup.Item>
+            ))} 
+        </ListGroup>
+      </Card>
     </div>
+    //   </div>
+    // </div>
   )
 }
 export default UserBalance

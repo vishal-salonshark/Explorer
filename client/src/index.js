@@ -11,7 +11,6 @@ import NavBar from './comp/Navbar'
 import BlockDetails from './comp/BlockDetails'
 import reportWebVitals from "./reportWebVitals";
 import UserTxHistory from './comp/UserTxHistory'
-import UserBalance from "./comp/UserBalance";
 
 const router = createBrowserRouter([
   {
@@ -34,10 +33,7 @@ const router = createBrowserRouter([
     path: "/user/",
     element: <UserTxHistory/>,
   },
-  {
-    path: "/userbal/",
-    element: <UserBalance/>,
-  },
+  
 ]);
 
 ReactDOM.render(
