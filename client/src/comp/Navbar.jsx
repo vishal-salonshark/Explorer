@@ -26,7 +26,7 @@ function NavBar() {
           >
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/user/">Users</Nav.Link>
-            <Nav.Link href="/userBal/">UserBalance</Nav.Link>
+            <Nav.Link href="/new/">new</Nav.Link>
           </Nav>
           <Form className="d-flex">
             {/* <Form.Control

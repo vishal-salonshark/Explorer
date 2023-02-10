@@ -26,6 +26,11 @@ async function getBlockData() {
   var block = await web3.eth.getBlock(latestBlock)
   return block
 };
+async function getBlockDataOf(num) {
+  // var latestBlock = await web3.eth.getBlockNumber()
+  var block = await web3.eth.getBlock(num)
+  return block
+};
 
 async function getTransactionDetails(t) {
   var _transaction = await web3.eth.getTransactionReceipt(t)
@@ -97,7 +102,7 @@ app.get("/tarnsactions/:number", (req, res) => {
 app.get("/block/:number", async (req, res) => {
   var num = parseInt(req.params.number);
   console.log(`this is the number sent in req ${num}`)
-  var _block = await getBlockData()
+  var _block = await getBlockDataOf(num)
        res.json(_block);
 });
 

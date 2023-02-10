@@ -14,7 +14,7 @@ const BlockDetails = () => {
       _number = (Number(localStorage.getItem('num')))
       Axios.get(`http://localhost:3001/block/${_number}`).then(async (response) => {
         setBlockDetails(response.data);
-        console.log (response.data)
+        // console.log (response.data)
       });
     }, 1000)
     return () => clearTimeout(timer);

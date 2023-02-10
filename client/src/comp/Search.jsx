@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react'
 import Axios from 'axios'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Select from 'react-select'
+import { Link } from 'react-router-dom'
 
 function Search(props) {
   const [searchData, setSearchData] = useState([])
@@ -18,6 +19,7 @@ function Search(props) {
   useEffect(() => {
     Axios.get('http://localhost:3001/').then((response) => {
       setSearchData(response.data)
+      console.log(response.data)
     })
   }, [])
 
@@ -50,19 +52,21 @@ function Search(props) {
             .filter((item) => {
               return search.data.toLowerCase() === ''
                 ? item
-                : item.block.hash.toLowerCase().includes(search.data) ||
-                    String(item.block.number)
+                : item.blockHash.toLowerCase().includes(search.data) ||
+                    String(item.blockNumber)
                       .toLowerCase()
                       .includes(search.data)
             })
             .map((item, index) => (
+              // console.log(item)
               <tr key={index}>
-                <td><a href={`/block/:number`}>
-                    {item.block.number}
+                <td>
+                <a href={`/block/:number`}>
+                    {item.blockNumber}
                     </a>
                 </td>
                 <td className="d-flex justify-content-center">
-                  {item.block.hash}
+                  {item.blockHash}
                 </td>
               </tr>
             ))}

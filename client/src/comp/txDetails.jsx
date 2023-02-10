@@ -13,6 +13,7 @@ const TransactionsDetails = () => {
       _tx = localStorage.getItem('_tx');
       Axios.get(`http://localhost:3001/tx/${_tx}`).then(async (response) => {
         setTransactionDetails(await response.data);
+        console.log(response.data);
       });
     }, 3000)
     return () => clearTimeout(timer);
