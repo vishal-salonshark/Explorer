@@ -10,7 +10,6 @@ import { useState, useEffect } from 'react'
 import Axios from 'axios'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Select from 'react-select'
-import { Link } from 'react-router-dom'
 
 function Search(props) {
   const [searchData, setSearchData] = useState([])
