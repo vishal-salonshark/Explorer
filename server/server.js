@@ -14,7 +14,7 @@ const web3 = new Web3(
   )
 
 // const web3 = new Web3(
-//   new Web3.providers.HttpProvider('https://eth-goerli.g.alchemy.com/v2/FciNO-qurqA37I5dal9Vi9b5HiDAPhx8'),
+//   new Web3.providers.HttpProvider('https://eth-goerli.g.alchemy.com/v2/rKOY5TxJrgsatqlZdnhKIeQBC3Xx5PUi'),
 // )
 
 app.use(express.json())
@@ -44,12 +44,20 @@ async function dataLoder() {
     var _hash = _block.hash
     var _tx = await _block.transactions
     var _timestamp = _block.timestamp
+    var _size = _block.size
+    var _miner = _block.miner
+    var _gasLimit = _block.gasLimit
+    var _gasUsed = _block.gasUsed
     if (number !== _number) {
       const BLOCK = await BlocksModel.create({
         // block: _block,
         blockNumber: number,
         blockHash: _hash,
         timeStamp: _timestamp,
+        blockSize : _size,
+        miner: _miner,
+        gasLimit : _gasLimit,
+        gasUsed : _gasUsed,
         transactions: _tx,
       });
         // console.log(number);
@@ -127,15 +135,6 @@ app.get("/user/:ux", (req, res) => {
     }
 
   }).select('transactions.from transactions.to transactions.transactionHash').sort({ _id: -1 });
-  // TransactionsModel.find({ "transactions.to": _ux }, (err, result) => {
-  //   try {
-  //     if ( result !== null){
-  //       res.json(result);
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }).select('transactions.from transactions.to transactions.transactionHash').sort({ _id: -1 });
 });
 
 app.listen(3001, () => {

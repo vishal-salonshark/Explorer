@@ -13,7 +13,9 @@ function App() {
     Axios.get('http://localhost:3001/').then((response) => {
       setBlockData(response.data)
     })
+    
   }, [])
+  console.log(blockData)
   return (
     <div className="App" style={{margin: "3rem"}}>
       <div className="container shadow-lg p-3 mb-5 bg-body-tertiary rounded">

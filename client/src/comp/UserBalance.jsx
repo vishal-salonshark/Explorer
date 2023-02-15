@@ -73,7 +73,8 @@ export function UserBalance(acc) {
   }, [defaultAccount, acc])
 
   useEffect(() => {
-    window.ethereum.on('accountsChanged', accountChangedHandler)
+    // window.ethereum.on('accountsChanged', accountChangedHandler)
+    window.ethereum.on('accountsChanged', accountChangedHandler )
   }, [])
 
   const accountChangedHandler = async (newAccount) => {

@@ -5,6 +5,10 @@ const blockSchema = new Schema({
   blockNumber: String,
   blockHash: String,
   timeStamp: String,
+  blockSize: Number,
+  miner : String,
+  gasLimit : String,
+  gasUsed : String,
   transactions: Array,
 });
 

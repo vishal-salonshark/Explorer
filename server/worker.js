@@ -17,7 +17,7 @@ const web3 = new Web3(
   )
 
 // const web3 = new Web3(
-//   new Web3.providers.HttpProvider('https://eth-goerli.g.alchemy.com/v2/FciNO-qurqA37I5dal9Vi9b5HiDAPhx8'),
+//   new Web3.providers.HttpProvider('https://eth-goerli.g.alchemy.com/v2/rKOY5TxJrgsatqlZdnhKIeQBC3Xx5PUi'),
 // )
 
 app.use(express.json())
@@ -60,7 +60,7 @@ function txLoder() {
             blockHash: _hash,
             transactions: data,
           });
-          // console.log(`transaction added succsessfully ${++n}`);
+          console.log(`transaction added succsessfully ${++n}`);
         })
         // console.timeEnd(" tx loading...")
         // _number = number;
@@ -79,7 +79,7 @@ mongoose
     console.log('CONNECTED')
     setInterval(async () => {
       txLoder()
-    }, 2500)
+    }, 3000)
     })
 
 
