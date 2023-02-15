@@ -95,17 +95,41 @@ app.get("/", (req, res) => {
   }).sort({ _id: -1 });
 });
 
+//app.get("/tarnsactions/:number", (req, res) => {
+//  var num = parseInt(req.params.number);
+//  console.log(`this is the number sent in req ${num}`)
+// BlocksModel.find({ "blockNumber": num }, (err, result) => {
+//    if (err) {
+//      res.json(err);
+//      res.json(result);
+//    } else {
+//    }
+//  }).select('transactions');
+//});
+
+
 app.get("/tarnsactions/:number", (req, res) => {
   var num = parseInt(req.params.number);
   console.log(`this is the number sent in req ${num}`)
-  BlocksModel.find({ "blockNumber": num }, (err, result) => {
+  TransactionsModel.find({ "blockNumber": num }, (err, result) => {
     if (err) {
       res.json(err);
     } else {
       res.json(result);
     }
-  }).select('transactions');
+  });
 });
+
+app.get("/tarnsactionsList/", (req, res) => {
+  TransactionsModel.find({ }, (err, result) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(result);
+    }
+  }).select('transactions').sort({ _id: -1 });
+});
+
 
 app.get("/block/:number", async (req, res) => {
   var num = parseInt(req.params.number);
