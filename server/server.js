@@ -145,7 +145,7 @@ app.get("/tx/:transactions", async (req, res) => {
 });
 
 
-app.get("/user/:ux", (req, res) => {
+app.get("/user-from/:ux", (req, res) => {
   var _ux = req.params.ux;
   console.log(`this is the hash sent in req ${_ux}`)
   
@@ -158,7 +158,23 @@ app.get("/user/:ux", (req, res) => {
       console.log(error)
     }
 
-  }).select('transactions.from transactions.to transactions.transactionHash').sort({ _id: -1 });
+  }).select('transactions.from transactions.to transactions.transactionHash transactions.blockNumber').sort({ _id: -1 });
+});
+
+app.get("/user-to/:ux", (req, res) => {
+  var _ux = req.params.ux;
+  console.log(`this is the hash sent in req ${_ux}`)
+  
+  TransactionsModel.find({ "transactions.to": _ux }, (err, result) => {
+    try {
+      if ( result !== null){
+        res.json(result);
+      }
+    } catch (error) {
+      console.log(error)
+    }
+
+  }).select(' transactions.to transactions.from transactions.transactionHash transactions.blockNumber').sort({ _id: -1 });
 });
 
 app.listen(3001, () => {
