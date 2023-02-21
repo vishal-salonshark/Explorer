@@ -12,7 +12,7 @@ const CompilerVersion = () => {
 
   useEffect(() => {
     setSolcVersion(selected)
-  },[selected])
+  },[selected, setSolcVersion])
 
   return (
     <div className="h-22 flex flex-col w-1/2 mx-5  ">
@@ -43,7 +43,7 @@ const CompilerVersion = () => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value.toLowerCase())}
               placeholder="Enter country name"
-              className="placeholder:text-gray-700 p-2outline-none bg-white"
+              className="placeholder:text-gray-700 w-11/12 h-10 mx-2 p-2 outline-none bg-white"
             />
           </div>
           {Object.entries(menu.releases)?.map((item) => (

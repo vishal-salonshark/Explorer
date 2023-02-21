@@ -90,7 +90,7 @@ const VerifyContract = () => {
       </div>
       </div>
     
-      <button type='submit' className='w-40 h-15 bg-[#89CDB3] rounded-3xl text-2xl font-bold text-center p-3 text-white' onClick={() => handleSubmit()}> Verify </button>
+      <button type='submit' className='w-40 h-15 bg-[#89CDB3] rounded-3xl text-2xl mb-10 font-bold text-center p-3 text-white' onClick={() => handleSubmit()}> Verify </button>
     </div>
     </div>
   )

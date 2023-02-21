@@ -158,7 +158,7 @@ app.get("/user-from/:ux", (req, res) => {
       console.log(error)
     }
 
-  }).select('transactions.from transactions.to transactions.transactionHash transactions.blockNumber').sort({ _id: -1 });
+  }).select('transactions.from transactions.to transactions.transactionHash transactions.blockNumber transactions.contractAddress').sort({ _id: -1 });
 });
 
 app.get("/user-to/:ux", (req, res) => {
