@@ -3,6 +3,7 @@ const express = require("express");
 const Web3 = require('web3')
 const app = express();
 const mongoose = require("mongoose");
+var UserData = require('./UserData')
 const BlocksModel = require("./Blocks");
 const TransactionsModel = require("./Transactions");
 const {Worker}= require('worker_threads')
@@ -106,6 +107,29 @@ app.get("/", (req, res) => {
 //    }
 //  }).select('transactions');
 //});
+
+app.put('/signUp', async (req, res) => {
+  const email = req.body.email
+  const userID = req.body.userid
+  const password = req.body.password
+
+  const data = UserData.create({
+    email : email,
+    userID : userID,
+    password: password,
+  })
+
+  res.json({result:"success"})
+
+})
+
+app.get('/login/:emailID',(req, res) => {
+  var emailid = req.params.emailID
+  UserData.find({"email" : emailid}).then( (result) => {
+      res.json(result);
+    })
+  })
+
 
 
 app.get("/tarnsactions/:number", (req, res) => {
